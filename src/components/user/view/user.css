@@ -1,0 +1,30 @@
+.user-card {
+    padding: 10px;
+    padding-top: 20px;
+    margin-left: -4px;
+    padding-bottom: 20px;
+    border: 2px solid #ffffff73;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0px 0px 4px 4px #00000044;
+}
+
+.user-name {
+    margin-left: 10px;
+}
+
+.user-email {
+    margin-left: 25px;
+    font-family: 'Euro Technic', sans-serif;
+}
+
+.user-delete {
+    font-size: 25px;
+    color: rgba(255, 1, 1, 0.644);
+    position: absolute;
+    right: 20px;
+}

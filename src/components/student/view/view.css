@@ -1,0 +1,34 @@
+input {
+    background: #ffffff00;
+    backdrop-filter: blur(10px);
+    outline: none;
+    border-radius: 10px;
+    color: rgb(236, 236, 236);
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #ffffff2d;
+    padding: 10px;
+    min-width: 280px;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.575);
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn5 {
+    margin-left: 90px;
+    position: inherit;
+    margin-top: 30px;
+    padding: 10px 13px 10px 13px;
+    border-radius: 10px;
+    border: 0;
+    background: #919191c7;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}

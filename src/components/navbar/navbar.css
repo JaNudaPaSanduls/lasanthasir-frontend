@@ -1,0 +1,10 @@
+.content {
+    border-radius: 0px 0px 10px 10px;
+    backdrop-filter: blur(35px);
+    box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    width: 200px;
+    padding: 20px;
+}

@@ -1,0 +1,24 @@
+.select {
+    margin-top: 20px;
+}
+
+.select Select {
+    padding: 10px;
+}
+
+.select Select {
+    background: #ffffff00;
+    backdrop-filter: blur(10px);
+    outline: none;
+    border-radius: 10px;
+    color: rgb(160, 160, 160);
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #ffffff2d;
+    padding: 10px;
+    min-width: 300px;
+}
+
+.op {
+    color: white;
+    background-color: rgb(119, 119, 119);
+}

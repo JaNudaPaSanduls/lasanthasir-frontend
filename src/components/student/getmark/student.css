@@ -1,0 +1,20 @@
+.PRES {
+    background-color: rgb(44, 139, 44);
+    padding: 3px;
+    margin-top: -3px;
+    border-radius: 4px;
+}
+
+.ABSE {
+    background-color: rgb(139, 44, 44);
+    padding: 3px;
+    margin-top: -3px;
+    border-radius: 4px;
+}
+
+.NULL {
+    background-color: rgb(197, 0, 0);
+    padding: 3px;
+    margin-top: -3px;
+    border-radius: 4px;
+}

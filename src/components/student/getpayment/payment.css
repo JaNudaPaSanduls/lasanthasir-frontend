@@ -1,0 +1,11 @@
+.up-btn  {
+    margin-top: 10px;
+}
+
+.comp {
+    width: 40px;
+    display: flex;
+    margin-left: 130px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

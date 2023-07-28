@@ -1,0 +1,32 @@
+.btn3 {
+    margin-left: -160px;
+    position: inherit;
+    margin-top: 30px;
+    padding: 10px 13px 10px 13px;
+    border-radius: 10px;
+    border: 0;
+    background: #7468685b;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn4 {
+    margin-left: -260px;
+    position: inherit;
+    margin-top: 30px;
+    padding: 10px 13px 10px 13px;
+    border-radius: 10px;
+    border: 0;
+    background: #01bd1142;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.Active {
+    background-color: rgb(126, 8, 8);
+    margin-left: -270px;
+}
