@@ -69,12 +69,14 @@ const StudentRegister = () => {
     }
 
     async function uploadImage(e) {
-        const formdata = new FormData();
-        formdata.append("image", e);
-        fetch("https://api.imgbb.com/1/upload?key=3582c513a851d3ccf005f7188e08e475", {
-            method: "POST",
-            body: formdata
-        }).then(data=>data.json()).then(data=>setFinalImage(data.data.url)).catch(err=>setFinalImage(""));
+        if (e != "") {
+            const formdata = new FormData();
+            formdata.append("image", e);
+            fetch("https://api.imgbb.com/1/upload?key=3582c513a851d3ccf005f7188e08e475", {
+                method: "POST",
+                body: formdata
+            }).then(data=>data.json()).then(data=>setFinalImage(data.data.url)).catch(err=>setFinalImage(""));
+        }
     }
 
     return (
