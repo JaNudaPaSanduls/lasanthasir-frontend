@@ -5,7 +5,7 @@ import logo from '../../images/logo.png';
 const NavBar = () => {
   return (
     <div className="content">
-        <img className="logo" src={logo} alt="logo" />
+        <img className="logo" onClick={() => window.location = "/"} src={logo} alt="logo" />
     </div>
   )
 }
