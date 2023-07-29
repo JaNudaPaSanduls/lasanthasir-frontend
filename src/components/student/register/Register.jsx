@@ -1,6 +1,6 @@
 import React , { useState }from 'react';
 import NavBar from '../../navbar/NavBar';
-import { Form, message, Select } from 'antd';
+import { Form, message } from 'antd';
 import axios from 'axios';
 import './register.css';
 
@@ -13,6 +13,8 @@ const StudentRegister = () => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [grade, setGrade] = useState(""); 
+    const [image, setImage] = useState("");
+    const [finalImage, setFinalImage] = useState("https://i.postimg.cc/NF01Ppd6/bg.jpg");
 
     const onFormSubmit = async (e) => {
         messageApi.open({
@@ -20,40 +22,59 @@ const StudentRegister = () => {
             content: 'Loading...',
             duration: 0,
         });
-        const user = {
-            class_id: classId,
-            fname: fname,
-            lname: lname,
-            tel_number: phone,
-            nic: nic,
-            grade: grade,
-            Class: c_class
-        };
-
-        const config = {
-            headers: {
-                Authorization: await localStorage.getItem("Authorization")
-        }};
-
-        await axios.post('https://lasanthasir-api.vercel.app/student/create', user, config)
-            .then((res) => {
-                messageApi.destroy();
-                messageApi.open({
-                    type: 'success',
-                    content: 'Student Added',
-                    duration: 1000,
-                });
-                setTimeout(messageApi.destroy, 2000);
-            })
-            .catch((err) => {
-                console.log(err.message);
-                messageApi.destroy();
-                messageApi.open({
-                    type: 'error',
-                    content: err.response.data
-                });
-                setTimeout(messageApi.destroy, 3000);
+        await uploadImage(image);
+        if (finalImage == "") {
+            messageApi.open({
+                type: 'error',
+                content: "Can't Upload Image",
+                duration: 0,
             });
+        } else {
+            const user = {
+                class_id: classId,
+                fname: fname,
+                lname: lname,
+                tel_number: phone,
+                nic: nic,
+                grade: grade,
+                Class: c_class,
+                profilePic: finalImage
+            };
+    
+            const config = {
+                headers: {
+                    Authorization: await localStorage.getItem("Authorization")
+            }};
+    
+            await axios.post('https://lasanthasir-api.vercel.app/student/create', user, config)
+                .then((res) => {
+                    messageApi.destroy();
+                    messageApi.open({
+                        type: 'success',
+                        content: 'Student Added',
+                        duration: 1000,
+                    });
+                    setTimeout(messageApi.destroy, 2000);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                    messageApi.destroy();
+                    messageApi.open({
+                        type: 'error',
+                        content: err.response.data
+                    });
+                    setTimeout(messageApi.destroy, 3000);
+                });
+        }
+    }
+
+    async function uploadImage(e) {
+        const formdata = new FormData();
+        formdata.append("image", e);
+        fetch("https://api.imgbb.com/1/upload?key=3582c513a851d3ccf005f7188e08e475", {
+            method: "POST",
+            body: formdata
+        }).then(data=>data.json()).then(data=>setFinalImage(data.data.url)).catch(err=>setFinalImage(""));
     }
 
     return (
@@ -83,6 +104,12 @@ const StudentRegister = () => {
                     <input 
                     onChange={(e) => setLname(e.target.value)}
                     required type="text" placeholder="Enter Last Name" />
+                </div>
+                <div className="input">
+                    <p className="in-txt">Profile Pic</p>
+                    <input 
+                    onChange={(e) => setImage(e.target.files[0])}
+                    type="file" placeholder="Select Profile Picture" />
                 </div>
                 <div className="input">
                     <p className="in-txt">Phone Number</p>
