@@ -3,7 +3,6 @@ import axios from "axios";
 import { message, Form, Popconfirm } from "antd";
 import NavBar from '../../navbar/NavBar';
 import "./mark.css";
-import logo from '../../../images/bg.jpg';
 
 const StudentMark = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -15,6 +14,7 @@ const StudentMark = () => {
   const [id, setId] = useState("");
   const [classId, setClassId] = useState("");
   const [g_Class, setG_Class] = useState("Disaapa");
+  const [image, setImage] = useState("https://i.postimg.cc/NF01Ppd6/bg.jpg");
   const [open, setOpen] = useState(false);
 
   const token = localStorage.getItem("Authorization");
@@ -74,6 +74,7 @@ const StudentMark = () => {
           setFname("Not Fetched");
           setLname("");
           setClass("Not Fetched");
+          setImage("https://i.postimg.cc/NF01Ppd6/bg.jpg");
           setChecked(false);
           const phone = res.data.phone;
           // eslint-disable-next-line no-undef
@@ -147,6 +148,7 @@ const StudentMark = () => {
         setFname(res.data.student[0].fname);
         setLname(res.data.student[0].lname);
         setClass(res.data.student[0].class);
+        setImage(res.data.student[0].profilePic);
         setId(res.data.student[0]._id);
         setChecked(true);
         setTimeout(message.destroy, 2000);
@@ -175,7 +177,7 @@ const StudentMark = () => {
             <div className="scroll">
               <p className="register-txt">Mark Student</p>
               <div className="student-card">
-                <img src={logo} />
+                <img src={image} />
                 <div className="student-card-de">
                   <div>Name : {fname} {lname}</div>
                   <div className="card-top">Class : {Class}</div>

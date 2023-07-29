@@ -119,7 +119,7 @@ const Settings = () => {
         <button className={`${(localStorage.getItem("Admin")) ? "" : "hide"} button`} style={{ backgroundColor: "#800000", marginTop: "-20px"}} onClick={() => Click()}>Upgrade Students</button>
         </Popconfirm>
         <button className='button' style={{ backgroundColor: "rgba(0, 10, 0, 0.5)", marginTop: "50px", padding: "10px" }}
-        onClick={() => Logout}>Logout</button>
+        onClick={() => Logout()}>Logout</button>
     </div>
   )
 }

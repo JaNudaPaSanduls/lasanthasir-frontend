@@ -85,7 +85,7 @@ const GetPayment = () => {
         <div className="acc-type">Admin</div>
         <Form className="users-container-form" onFinish={onFormSubmit}>
           <div className={`scroll ${(hide == "hide") ? "" : "hide"}`}>
-            <p className="users-txt">Payments</p>
+            <p className="users-txt up-txt">Payments</p>
             <div className="input">
               <p className="in-txt">Class Id</p>
               <input type="number" onChange={(e) => setClassId(e.target.value)}

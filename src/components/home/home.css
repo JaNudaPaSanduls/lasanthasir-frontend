@@ -15,7 +15,7 @@
         to bottom,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 100%
-    ), url('../../images/bg.jpg');
+    ), url('https://i.postimg.cc/NF01Ppd6/bg.jpg');
     height: 100vh;
     filter: blur(2px);
     background-repeat: no-repeat;

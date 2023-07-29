@@ -10,6 +10,7 @@ export default class StudentUpdate extends React.Component {
     this.onFinish = this.onFinish.bind(this);
     this.studentDelete = this.studentDelete.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
+    this.next = this.next.bind(this);
     this.state = {
       fname: "Loading...",
       lname: "Loading...",
@@ -25,6 +26,9 @@ export default class StudentUpdate extends React.Component {
       u_lname: "",
       u_nic: "",
       u_phone: "",
+      FinalImage: "Main",
+      image: [],
+      b_img: ""
     };
 
     const token = localStorage.getItem("Authorization");
@@ -47,7 +51,7 @@ export default class StudentUpdate extends React.Component {
       key: "abc",
     });
     if (localStorage.getItem("Authorization") === null) {
-      // window.location = '/login';
+      window.location = '/login';
     }
 
     const id = localStorage.getItem("id");
@@ -73,7 +77,9 @@ export default class StudentUpdate extends React.Component {
           nic: res.data.student.nic,
           phone: res.data.student.tel_number,
           Class: res.data.student.class,
-          status: res.data.student.status
+          status: res.data.student.status,
+          image: res.data.student.profilePic,
+          b_img: res.data.student.profilePic
         });
       })
       .catch((err) => {
@@ -96,46 +102,63 @@ export default class StudentUpdate extends React.Component {
       duration: 0,
       key: "abc",
     });
-    const data = {
-      fname: (this.state.u_fname == "") ? this.state.fname : this.state.u_fname,
-      lname: (this.state.u_lname == "") ? this.state.lname : this.state.u_lname,
-      nic: (this.state.u_nic == "") ? this.state.nic : this.state.u_nic,
-      tel_number: (this.state.u_phone == "") ? this.state.phone : this.state.u_phone 
+    if (this.state .image == this.state.b_img) {
+      this.next("No Img");
+    } else {
+      const formdata = new FormData();
+    formdata.append("image", this.state.image);
+    await fetch("https://api.imgbb.com/1/upload?key=3582c513a851d3ccf005f7188e08e475", {
+        method: "POST",
+        body: formdata
+    }).then(data=>data.json()).then(data=>this.next(data.data.url)).catch(err=>console.log(err));
     }
-    if (this.state.u_fname == "") {this.setState({u_fname: this.state.fname})}
-    if (this.state.u_lname == "") {this.setState({u_lname: this.state.lname})}
-    if (this.state.u_phone == "") {this.setState({u_phone: this.state.phone})}
-    if (this.state.u_nic == "") {this.setState({u_nic: this.state.nic})}
-    const id = localStorage.getItem("id");
-    await axios
-      .patch(`https://lasanthasir-api.vercel.app/student/update/${id}`, data)
-      .then((res) => {
-        message.destroy();
-        message.open({
-          type: "success",
-          content: "Updated",
-          duration: 0,
-          key: "abc1",
-        });
-        setTimeout(message.destroy, 2000);
-        this.setState({
-          fname: this.state.u_fname,
-          lname: this.state.lname,
-          nic: this.state.nic,
-          tel_number: this.state.tel_number
+  }
+
+  async next(img) {
+    if (img == "") {
+    } else {
+      const data = {
+        fname: (this.state.u_fname == "") ? this.state.fname : this.state.u_fname,
+        lname: (this.state.u_lname == "") ? this.state.lname : this.state.u_lname,
+        nic: (this.state.u_nic == "") ? this.state.nic : this.state.u_nic,
+        tel_number: (this.state.u_phone == "") ? this.state.phone : this.state.u_phone,
+        profilePic: (this.state.b_img == this.state.image) ? this.state.b_img : img
+      }
+      if (this.state.u_fname == "") {this.setState({u_fname: this.state.fname})}
+      if (this.state.u_lname == "") {this.setState({u_lname: this.state.lname})}
+      if (this.state.u_phone == "") {this.setState({u_phone: this.state.phone})}
+      if (this.state.u_nic == "") {this.setState({u_nic: this.state.nic})}
+      const id = localStorage.getItem("id");
+      await axios
+        .patch(`https://lasanthasir-api.vercel.app/student/update/${id}`, data)
+        .then((res) => {
+          message.destroy();
+          message.open({
+            type: "success",
+            content: "Updated",
+            duration: 0,
+            key: "abc1",
+          });
+          setTimeout(message.destroy, 2000);
+          this.setState({
+            fname: this.state.u_fname,
+            lname: this.state.lname,
+            nic: this.state.nic,
+            tel_number: this.state.tel_number
+          })
         })
-      })
-      .catch((err) => {
-        console.log(err);
-        message.destroy();
-        message.open({
-          type: "error",
-          content: err.response.data,
-          duration: 0,
-          key: "abc1",
+        .catch((err) => {
+          console.log(err);
+          message.destroy();
+          message.open({
+            type: "error",
+            content: err.response.data,
+            duration: 0,
+            key: "abc1",
+          });
+          setTimeout(message.destroy, 3000);
         });
-        setTimeout(message.destroy, 3000);
-      });
+    }
   }
 
   async studentDelete() {
@@ -237,6 +260,12 @@ export default class StudentUpdate extends React.Component {
                   placeholder={this.state.lname}
                   onChange={(e) => this.setState({ u_lname: e.target.value })}
                 />
+              </div>
+              <div className="input">
+                    <p className="in-txt">Profile Pic</p>
+                    <input 
+                    onChange={(e) => this.setState({ image: e.target.files[0] })}
+                    type="file" placeholder="Select Profile Picture" />
               </div>
               <div className="input">
                 <p className="in-txt">Phone Number</p>

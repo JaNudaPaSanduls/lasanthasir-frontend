@@ -5,7 +5,7 @@
         to bottom,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 100%
-    ), url('../../images/bg.jpg');
+    ), url('https://i.postimg.cc/NF01Ppd6/bg.jpg');
     background-size: cover;
     position: relative;
 }
