@@ -65,41 +65,15 @@ const SendAbsent = () => {
           duration: 5000,
           key: "abc5"
         });
-        setTimeout(messageApi.destroy, 8000);
-      })
-      .catch((err) => {
-        console.log(err.message);
-        messageApi.destroy();
         messageApi.open({
-          type: "error",
-          content: err.response.data,
-          duration: 0,
-          key: "abc3"
-        });
-        setTimeout(messageApi.destroy, 3000);
-      });
-    const data = {
-      grade: grade,
-      Class: Class,
-      Attendance: "ABSENT"
-    }
-    await axios
-      .post("https://lasanthasir-api.vercel.app/student/get", data)
-      .then((res) => {
-        messageApi.destroy();
-        messageApi.open({
-          type: "success",
+          type: "loading",
           content: "Sending SMS....",
-          duration: 1000,
-          key: "abc3"
+          duration: 5000,
+          key: "abc5"
         });
-        setHide("hide");
-        setTimeout(messageApi.destroy, 3000);
-        console.log(numbers.toString());
-        console.log("Abc")
         const nums = numbers.toString();
-        console.log(nums)
         JavaScriptInterface.SendSMS(nums, false, "Absent");
+        setTimeout(messageApi.destroy, 8000);
       })
       .catch((err) => {
         console.log(err.message);
