@@ -97,7 +97,8 @@ const SendAbsent = () => {
         setTimeout(messageApi.destroy, 3000);
         console.log(numbers.toString());
         console.log("Abc")
-        JavaScriptInterface.SendSMS(numbers.toString(), false, "Absent");
+        const nums = numbers.toString();
+        JavaScriptInterface.SendSMS(nums, false, "Absent");
       })
       .catch((err) => {
         console.log(err.message);
