@@ -96,7 +96,7 @@ const SendAbsent = () => {
         setHide("hide");
         setTimeout(messageApi.destroy, 3000);
         console.log(numbers);
-        JavaScriptInterface.SendSMS(numbers, false, numbers);
+        JavaScriptInterface.SendSMS(numbers.toString(), false, "Absent");
       })
       .catch((err) => {
         console.log(err.message);
