@@ -72,6 +72,7 @@ const SendAbsent = () => {
           key: "abc5"
         });
         const nums = numbers.toString();
+        if (nums == "")
         JavaScriptInterface.SendSMS(nums, false, "Absent");
         setTimeout(messageApi.destroy, 8000);
       })
@@ -92,14 +93,14 @@ const SendAbsent = () => {
     setOpen(true);
   }
 
-  const setNums = async(students) => {
+  const setNums = (students) => {
     console.log(students[0].tel_number)
     function setNum() {
       for(let i = 0;i<students.length;i++) {
         numbers.push(students[i].tel_number);
       }
     }
-    await setNum();
+    setNum();
   }
 
   const onFormSubmit = async (e) => {
