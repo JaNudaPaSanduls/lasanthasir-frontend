@@ -72,8 +72,11 @@ const SendAbsent = () => {
           key: "abc5"
         });
         const nums = numbers.toString();
-        if (nums == "")
-        JavaScriptInterface.SendSMS(nums, false, "Absent");
+        if (nums == "") {
+
+        } else {
+          JavaScriptInterface.SendSMS(nums, false, "Absent");
+        }
         setTimeout(messageApi.destroy, 8000);
       })
       .catch((err) => {
