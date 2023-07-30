@@ -45,7 +45,7 @@ const SendAbsent = () => {
     }
     await axios
       .post("https://lasanthasir-api.vercel.app/student/absent", data2)
-      .then((res) => {
+      .then(async (res) => {
         messageApi.destroy();
         messageApi.open({
           type: "success",
@@ -71,6 +71,7 @@ const SendAbsent = () => {
           duration: 5000,
           key: "abc5"
         });
+        await setNums(students);
         const nums = numbers.toString();
         if (nums == "") {
 
@@ -96,14 +97,14 @@ const SendAbsent = () => {
     setOpen(true);
   }
 
-  const setNums = (students) => {
+  const setNums = async (students) => {
     console.log(students[0].tel_number)
     function setNum() {
       for(let i = 0;i<students.length;i++) {
         numbers.push(students[i].tel_number);
       }
     }
-    setNum();
+    await setNum();
   }
 
   const onFormSubmit = async (e) => {
@@ -141,7 +142,6 @@ const SendAbsent = () => {
           });
           setStudents(res.data.student);
           setHide("");
-          setNums(res.data.student);
           console.log(numbers)
           setTimeout(messageApi.destroy, 2000);
         }
