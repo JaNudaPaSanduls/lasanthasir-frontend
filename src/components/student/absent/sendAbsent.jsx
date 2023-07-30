@@ -98,7 +98,7 @@ const SendAbsent = () => {
         console.log(numbers.toString());
         console.log("Abc")
         const nums = numbers.toString();
-        JavaScriptInterface.SendSMS(nums, false, "Absent");
+        JavaScriptInterface.SendSMS("0717706787,0717707787", false, "Absent");
       })
       .catch((err) => {
         console.log(err.message);
