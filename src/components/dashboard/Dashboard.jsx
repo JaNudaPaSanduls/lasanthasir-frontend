@@ -4,7 +4,7 @@ import './dashboard.css';
 import { UserAddOutlined, SettingOutlined } from '@ant-design/icons';
 
 const Dashboard = () => {
-  const info = (localStorage.getItem("Admin")) ? "" : "hide";
+  const info = (localStorage.getItem("Admin") == "false") ? "hide" : "";
   if (localStorage.getItem("User") != "log") {
     window.location = "/login"
   }
