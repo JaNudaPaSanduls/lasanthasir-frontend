@@ -30,7 +30,6 @@ const SendSMS = () => {
       }
     }
     await setNum();
-    JavaScriptInterface.sendSMS(numbers, false, Message);
   }
 
   const onFormSubmit = async (e) => {
@@ -68,7 +67,8 @@ const SendSMS = () => {
               key: "abc1"
             });
           } else {
-            setNums(res.data.student);
+            await setNums(res.data.student);
+            JavaScriptInterface.sendSMS(numbers, false, Message);
             messageApi.open({
               type: "success",
               content: "Students Fetched",
