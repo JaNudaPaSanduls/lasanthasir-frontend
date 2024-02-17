@@ -67,7 +67,7 @@ const SendSMS = () => {
               key: "abc1"
             });
           } else {
-            await setNums(res.data.student);
+            setNums(res.data.student);
             JavaScriptInterface.sendSMS(numbers, false, Message);
             messageApi.open({
               type: "success",
