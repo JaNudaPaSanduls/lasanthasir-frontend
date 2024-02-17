@@ -68,7 +68,7 @@ const SendSMS = () => {
             });
           } else {
             setNums(res.data.student);
-            JavaScriptInterface.sendSMS(numbers, false, Message);
+            JavaScriptInterface.SendSMS(numbers, false, Message);
             messageApi.open({
               type: "success",
               content: "Students Fetched",
